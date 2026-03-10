@@ -43,5 +43,8 @@ resource "aws_instance" "myinstance" {
   vpc_security_group_ids = [aws_security_group.mySG.id]
 
   key_name = aws_key_pair.mykey.key_name
+tags {
+  name = "ec2_create"
+}
 }
 
