@@ -1,0 +1,13 @@
+Key Pair
+   ↓
+  VPC
+   ↓
+Subnet
+   ↓
+Internet Gateway
+   ↓
+Route Table
+   ↓
+Security Group
+   ↓
+EC2 Instance
