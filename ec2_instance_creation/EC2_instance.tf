@@ -34,3 +34,14 @@ resource "aws_security_group" "mySG" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
 }
+resource "aws_instance" "myinstance" {
+  ami           = "ami-0f5ee92e2d63afc18"
+  instance_type = "t2.micro"
+
+  subnet_id = aws_subnet.mysubnet.id
+
+  vpc_security_group_ids = [aws_security_group.mySG.id]
+
+  key_name = aws_key_pair.mykey.key_name
+}
+
