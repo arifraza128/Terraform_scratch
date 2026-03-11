@@ -35,6 +35,7 @@ resource "aws_security_group" "mySG" {
     cidr_blocks = ["0.0.0.0/0"]
 }
 resource "aws_instance" "myinstance" {
+  count = 3 #number_of_instance
   ami           = "ami-0f5ee92e2d63afc18"
   instance_type = "t2.micro"
 
@@ -43,6 +44,7 @@ resource "aws_instance" "myinstance" {
   vpc_security_group_ids = [aws_security_group.mySG.id]
 
   key_name = aws_key_pair.mykey.key_name
+  user_data=file("installnginx")
 tags {
   name = "ec2_create"
 }
