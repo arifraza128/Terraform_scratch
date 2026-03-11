@@ -34,10 +34,15 @@ resource "aws_security_group" "mySG" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
 }
+
 resource "aws_instance" "myinstance" {
   count = 3 #number_of_instance
+  for_each = tomap({
+    vm1 = t2.micro
+    vm2 = t2.medium
+})
   ami           = "ami-0f5ee92e2d63afc18"
-  instance_type = "t2.micro"
+  instance_type = each.value
 
   subnet_id = aws_subnet.mysubnet.id
 
@@ -46,7 +51,7 @@ resource "aws_instance" "myinstance" {
   key_name = aws_key_pair.mykey.key_name
   user_data=file("installnginx")
 tags {
-  name = "ec2_create"
+  name = each.key
 }
 }
 
