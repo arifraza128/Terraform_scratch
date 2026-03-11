@@ -1,0 +1,4 @@
+here we use this concepts to create multiple replica of any services
+
+example:
+suppose i am creating a virtual machine i neeed to create multiple virtual machine i will use this and i can create
