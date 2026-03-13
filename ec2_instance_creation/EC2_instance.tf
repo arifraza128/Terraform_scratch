@@ -55,3 +55,13 @@ tags {
 }
 }
 
+
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+resource "aws_instance" "my_server" {
+  ami           = "unknown"
+  instance_type = "unknown"
+}
