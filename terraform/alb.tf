@@ -41,7 +41,9 @@ resource "aws_lb_target_group" "app_tg" {
   vpc_id   = local.effective_vpc_id
 
   health_check {
-    path                = "/"
+    protocol            = "HTTP"
+    port                = "5000"
+    path                = "/health"
     matcher             = "200"
     healthy_threshold   = 2
     unhealthy_threshold = 3

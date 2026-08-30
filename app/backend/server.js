@@ -4,7 +4,7 @@ const os = require('os');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -90,6 +90,10 @@ function getCpuUsage() {
 let startMeasure = getCpuUsage();
 
 // API Routes
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.get('/api/status', (req, res) => {
   const endMeasure = getCpuUsage();
   const idleDifference = endMeasure.idle - startMeasure.idle;
